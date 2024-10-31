@@ -1,0 +1,33 @@
+defaults:
+  - override hydra/launcher: joblib
+  - override hydra/hydra_logging: disabled  
+  - override hydra/job_logging: disabled  
+
+hydra:
+  launcher:
+    n_jobs: 5
+
+seed: 789243
+dir: '/home/declan/current/gcvi_neurips' # should be `gcvi_neurips`
+log_dir: './rotated_mnist_full/logs' # relative to dir
+weight_path: './rotated_mnist_toy/weights/G299.ckpt' # relative to dir
+
+data:
+  latent_dim: 64
+  prior_dispersion: 100
+  n_pts: 1000
+  true_angle: 260
+
+training:
+  hidden_dim: 64
+  device: 'cuda:2'
+  steps: 100000
+  lr: 1e-5
+  lr_modulus: 1000
+  mb_size: 32
+  K: 1000 # for iwbo/elbo and all importance sampling
+  loss: 'iwbo'
+  favi_mb_size: 1000
+  favi_offset: 100
+  parameterization: 'vonmises'
+

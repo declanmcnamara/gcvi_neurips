@@ -1,0 +1,3 @@
+python run.py --multirun seed="range(100,200)" training.loss=favi encoder.type=set encoder.parameterization=natural,mean data.n_sets=1 training.device='cpu' training.steps=50000 training.lr1=1e-3 training.lr2=1e-3
+python run.py --multirun seed="range(100,200)" training.loss=elbo encoder.type=set encoder.parameterization=natural,mean data.n_sets=1 training.device='cpu' training.steps=50000 training.lr1=1e-3 training.lr2=1e-3 
+python plots.py

@@ -1,0 +1,50 @@
+defaults:
+  - override hydra/launcher: joblib
+  - override hydra/hydra_logging: disabled  
+  - override hydra/job_logging: disabled  
+
+hydra:
+  launcher:
+    n_jobs: 20
+
+seed: 789243
+dir: '/home/declan/current/gcvi_neurips' # should be `gcvi_neurips`
+log_dir: './amortized_clustering/logs' # relative to dir
+
+data:
+  true_centers: [-20., -10., 0., 10., 20.]
+  proportions: [1., 1., 1., 1., 1.]
+  sigma: 0.5
+  tau: .1
+  n_sets: 25
+  n_obs: 1000
+  true_shift: 100.
+  initial_shift: 0.
+
+training:
+  device: 'cuda:6'
+  steps: 20000
+  lr1: 1e-4
+  lr2: 1e-4
+  grad_clip: 1
+  K: 100 # for elbo/iwbo
+  loss: 'favi'
+  lr_modulus1: 1000
+  lr_modulus2: 1000
+
+encoder:
+  type: 'set'
+  n_bins: 10000
+  n_layers: 1
+  hidden_dim: 64
+  dropout: 0.0
+  kernel_size: 10
+  stride: 5
+  num_heads: 4
+  parameterization: 'natural'
+
+plots:
+  seed_start: 100
+  seed_end: 200
+  width_to_use: 64
+

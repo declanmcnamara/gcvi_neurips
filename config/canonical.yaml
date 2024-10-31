@@ -1,0 +1,31 @@
+defaults:
+  - override hydra/launcher: joblib
+  - override hydra/hydra_logging: disabled  
+  - override hydra/job_logging: disabled  
+
+hydra:
+  launcher:
+    n_jobs: 4
+
+seed: 789243
+dir: '/home/declan/current/gcvi_neurips' # should be `gcvi_neurips`
+log_dir: './canonical_gaussian/logs' # relative to dir
+
+data:
+  sigma: .5
+  angle_min: 0.
+  angle_max: 360
+
+training:
+  device: 'cpu'
+  steps: 200000
+  lr: 1e-4
+  true_mb_size: 100
+  test_mb_size: 1000
+  favi_mb_size: 16
+  loss: 'favi'
+
+encoder:
+  hidden_dim: 512
+  n_hidden_layer: 1
+  
